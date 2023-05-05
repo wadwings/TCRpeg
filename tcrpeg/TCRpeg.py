@@ -2,7 +2,7 @@ import torch
 import numpy as np
 import pandas as pd
 import torch.nn as nn
-from tcrpeg.model import TCRpeg_model, TCRpeg_vj_model
+from src.TCRpeg.tcrpeg.model import TCRpeg_model, TCRpeg_vj_model
 # from model import TCRpeg_model,TCRpeg_vj_model
 from tqdm import tqdm
 import time
@@ -105,6 +105,8 @@ class TCRpeg:
                 if type(path_train) is not str:
                     self.aas_seqs_train = np.array([x[0] for x in path_train])
                     self.vs_train,self.js_train=[x[1] for x in path_train],[x[2] for x in path_train]
+                    print(f'vs_train{self.vs_train}')
+                    print(f'js_train{self.js_train}')
                 else :
                     self.aas_seqs_train,self.vs_train,self.js_train = self.load_data(path_train,vj=True)
                 self.vs_train,self.js_train = self.gene2embs(self.vs_train,'v'),self.gene2embs(self.js_train,'j')
